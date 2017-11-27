@@ -8,4 +8,6 @@ public interface IPerson
     String getWholeLife();
     String getName();
     Date getBirthdate();
+
+    IPerson stayInState();
 }

@@ -20,6 +20,7 @@ public class Person implements IPerson, IAlivePerson, IUnmarriedPerson, IMarried
         return new Person(name, birthdate);
     }
 
+    @Override
     public String getName()
     {
         return _name;
@@ -30,6 +31,7 @@ public class Person implements IPerson, IAlivePerson, IUnmarriedPerson, IMarried
         _name = name;
     }
 
+    @Override
     public Date getBirthdate()
     {
         if (_wholeLife.size() <= 0)
@@ -38,6 +40,7 @@ public class Person implements IPerson, IAlivePerson, IUnmarriedPerson, IMarried
         return _wholeLife.get(0).getWhen();
     }
 
+    @Override
     public String getWholeLife()
     {
         if (_wholeLife.size() <= 0)
@@ -65,30 +68,35 @@ public class Person implements IPerson, IAlivePerson, IUnmarriedPerson, IMarried
         return sWholeLife.toString();
     }
 
+    @Override
     public IDeadPerson dies(final Date when)
     {
         _wholeLife.add(new PersonsLifeEventData(PersonsLifeEvent.Death, when, null));
         return this;
     }
 
+    @Override
     public IUnmarriedPerson getsDivorced(final Date when)
     {
         _wholeLife.add(new PersonsLifeEventData(PersonsLifeEvent.Divorce, when, null));
         return this;
     }
 
+    @Override
     public IUnmarriedPerson getsWidowed(final Date when)
     {
         _wholeLife.add(new PersonsLifeEventData(PersonsLifeEvent.Widowhood, when, null));
         return this;
     }
 
+    @Override
     public IMarriedPerson getsMarried(final String toWhom, final Date when)
     {
         _wholeLife.add(new PersonsLifeEventData(PersonsLifeEvent.Marriage, when, toWhom));
         return this;
     }
 
+    @Override
     public String getCurrentState()
     {
         if (_wholeLife.size() <= 0)
@@ -97,11 +105,21 @@ public class Person implements IPerson, IAlivePerson, IUnmarriedPerson, IMarried
         return String.format("%s is %s\n", getName(), _wholeLife.get(_wholeLife.size() - 1).getWhat().asState());
     }
 
+    @Override
     public IUnmarriedPerson getsReborn(final String asWho, final Date when)
     {
         // old name gets into additionalinfo, new name is new name
         _wholeLife.add(new PersonsLifeEventData(PersonsLifeEvent.Birth, when, asWho));
         setName(asWho);
+        return this;
+    }
+
+    @Override
+    public Person stayInState()
+    {
+        System.out.println("In Person::stayInState()");
+        System.out.println(this.getCurrentState());
+
         return this;
     }
 }

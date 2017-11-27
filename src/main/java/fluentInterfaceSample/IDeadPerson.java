@@ -6,4 +6,7 @@ import java.util.Date;
 public interface IDeadPerson extends IPerson
 {
     IUnmarriedPerson getsReborn(String asWho, Date when);
+
+    @Override
+    IDeadPerson stayInState();
 }

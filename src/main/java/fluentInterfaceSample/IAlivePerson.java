@@ -5,4 +5,7 @@ import java.util.Date;
 public interface IAlivePerson extends IPerson
 {
     IDeadPerson dies(Date when);
+
+    @Override
+    IAlivePerson stayInState();
 }

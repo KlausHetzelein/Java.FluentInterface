@@ -41,12 +41,12 @@ public class personTests extends TestCase
         System.out.println(sWholeLife);
     }
 
-    public void testFluentWholeLifeWithReBirth()
+    public void testFluentWholeLifeWithStayInState()
     {
-        final IPerson person = Person.getsBorn("hans mustermann", new Date(56, 0, 2))
-                .getsMarried("first wife", new Date(76, 1, 3)).getsDivorced(new Date(78, 2, 4))
-                .getsMarried("second wife", new Date(80, 3, 5)).getsWidowed(new Date(98, 4, 6))
-                .dies(new Date(110, 5, 7)).getsReborn("Jonny Cash", new Date(150, 6, 8));
+        final IPerson person = Person.getsBorn("hans mustermann", new Date(56, 0, 2)).stayInState()
+                .getsMarried("first wife", new Date(76, 1, 3)).stayInState().getsDivorced(new Date(78, 2, 4))
+                .stayInState().getsMarried("second wife", new Date(80, 3, 5)).stayInState()
+                .getsWidowed(new Date(98, 4, 6)).stayInState().dies(new Date(110, 5, 7)).stayInState();
 
         final String sWholeLife = person.getWholeLife();
         System.out.println(sWholeLife);

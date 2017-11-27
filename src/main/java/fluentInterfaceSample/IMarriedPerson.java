@@ -7,4 +7,7 @@ public interface IMarriedPerson extends IAlivePerson
     IUnmarriedPerson getsDivorced(Date when);
 
     IUnmarriedPerson getsWidowed(Date when);
+
+    @Override
+    IMarriedPerson stayInState();
 }
